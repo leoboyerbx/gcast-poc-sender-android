@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receiver</title>
+</head>
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+</style>
+<body>
+<div id="message"  style="
+">SALUT LE S</div>
+<iframe src="https://qwwizzy.cf" frameborder="0"></iframe>
+<script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+<script>
+    'use strict';
+    const context = cast.framework.CastReceiverContext.getInstance();
+    context.addCustomMessageListener('urn:x-cast:com.example.castdata', function(customEvent) {
+        if(customEvent.data.type == "message"){
+            document.getElementById("message").innerHTML = customEvent.data.text;
+        }
+    });
+    context.start();
+</script>
+</body>
+</html>

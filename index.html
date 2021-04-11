@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cast</title>
+</head>
+<body>
+  <body>
+    <google-cast-launcher></google-cast-launcher>
+    <script>
+        console.log('client')
+      window['__onGCastApiAvailable'] = function(isAvailable) {
+        console.log('init', isAvailable)
+        if (isAvailable) {
+          initializeCastApi();
+        }
+      };
+
+      initializeCastApi = function() {
+        cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: '720A8D7E',
+          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+        });
+      };
+
+      function sendMessage(msg){
+        var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+        if(castSession){
+          castSession.sendMessage('urn:x-cast:com.example.castdata', {
+              type: "message",
+              text: msg
+          });
+        }
+      }
+      </script>
+      <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+  </body>
+</body>
+</html>
