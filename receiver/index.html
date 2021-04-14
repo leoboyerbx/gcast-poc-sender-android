@@ -11,17 +11,24 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+    }
+    #message {
+        font-size: 2em;
     }
 </style>
 <body>
-<div id="message"  style="
-">SALUT LE S</div>
-<iframe src="https://qwwizzy.cf" frameborder="0"></iframe>
+    <div id="message">SALUT LE S</div>
+
 <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
 <script>
     'use strict';
     const context = cast.framework.CastReceiverContext.getInstance();
-    context.addCustomMessageListener('urn:x-cast:com.example.castdata', function(customEvent) {
+    context.addCustomMessageListener('urn:x-cast:com.pnk.poccast', function(customEvent) {
+        console.log(customEvent)
         if(customEvent.data.type == "message"){
             document.getElementById("message").innerHTML = customEvent.data.text;
         }
